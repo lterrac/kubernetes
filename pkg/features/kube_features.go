@@ -797,6 +797,14 @@ const (
 	//
 	// Enables Leader Migration for kube-controller-manager and cloud-controller-manager
 	ControllerManagerLeaderMigration featuregate.Feature = "ControllerManagerLeaderMigration"
+
+	// owner: @vinaykul
+	// kep: http://kep.k8s.io/1287
+	// kep: http://kep.k8s.io/2273
+	// alpha: v1.23
+	//
+	// Enables In-Place Pod Vertical Scaling
+	InPlacePodVerticalScaling featuregate.Feature = "InPlacePodVerticalScaling"
 )
 
 func init() {
@@ -915,6 +923,7 @@ var defaultKubernetesFeatureGates = map[featuregate.Feature]featuregate.FeatureS
 	MemoryQoS:                                      {Default: false, PreRelease: featuregate.Alpha},
 	CPUManagerPolicyOptions:                        {Default: false, PreRelease: featuregate.Alpha},
 	ControllerManagerLeaderMigration:               {Default: true, PreRelease: featuregate.Beta},
+	InPlacePodVerticalScaling:                      {Default: false, PreRelease: featuregate.Alpha},
 
 	// inherited features from generic apiserver, relisted here to get a conflict if it is changed
 	// unintentionally on either side:
