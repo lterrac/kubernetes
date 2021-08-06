@@ -17,6 +17,7 @@ limitations under the License.
 package main
 
 import (
+	"context"
 	"fmt"
 	"os"
 
@@ -52,7 +53,7 @@ func main() {
 	switch module {
 	case "kube-apiserver":
 		// generate docs for kube-apiserver
-		apiserver := apiservapp.NewAPIServerCommand()
+		apiserver := apiservapp.NewAPIServerCommand(context.Background().Done())
 		doc.GenMarkdownTree(apiserver, outDir)
 	case "kube-controller-manager":
 		// generate docs for kube-controller-manager
@@ -68,7 +69,7 @@ func main() {
 		doc.GenMarkdownTree(scheduler, outDir)
 	case "kubelet":
 		// generate docs for kubelet
-		kubelet := kubeletapp.NewKubeletCommand()
+		kubelet := kubeletapp.NewKubeletCommand(context.Background().Done())
 		doc.GenMarkdownTree(kubelet, outDir)
 	case "kubeadm":
 		// resets global flags created by kubelet or other commands e.g.

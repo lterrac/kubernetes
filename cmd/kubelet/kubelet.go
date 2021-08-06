@@ -21,6 +21,7 @@ limitations under the License.
 package main
 
 import (
+	"context"
 	"math/rand"
 	"os"
 	"time"
@@ -34,7 +35,7 @@ import (
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
-	command := app.NewKubeletCommand()
+	command := app.NewKubeletCommand(context.Background().Done())
 	logs.InitLogs()
 	defer logs.FlushLogs()
 

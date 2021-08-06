@@ -19,6 +19,7 @@ limitations under the License.
 package main
 
 import (
+	"context"
 	"math/rand"
 	"os"
 	"time"
@@ -32,7 +33,7 @@ import (
 func main() {
 	rand.Seed(time.Now().UnixNano())
 
-	command := app.NewAPIServerCommand()
+	command := app.NewAPIServerCommand(context.Background().Done())
 
 	// TODO: once we switch everything over to Cobra commands, we can go back to calling
 	// utilflag.InitFlags() (by removing its pflag.Parse() call). For now, we have to set the
